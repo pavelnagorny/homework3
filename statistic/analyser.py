@@ -48,11 +48,9 @@ class Analyser(object):
         # TODO: Написати код який повертає унікальних відвідувачів. Унікальність визначається за IP адресою
         # Всі дані про відвідувачів доступні в self.__data
         visitors = []
-        for user in self.__data:
-            if user[1] not in visitors:
-                visitors.append(user[1])
+
         return visitors
-    print (unique_visitors(self.__data))
+
     def all_visitors(self):
         '''
         Return array of visitors and count of visits
