@@ -59,17 +59,10 @@ class Analyser(object):
         Return array of visitors and count of visits
         '''
         # TODO: Вивести кількість всіх відвідувачів та кількість відвідувань
-        visitors = []
-        for user in self.__data:
-            if user[0] not in visitors:
-                visitors.append(user[0])
-        visitors_count = len(visitors)
 
-        visits_count = 0
-        for visit in self.__data:
-            visits_count += 1
+        visitors_count = str(len(self.unique_visitors()))
+        visits_count = str(len(self.__data))
         visitors = (visitors_count, visits_count)
-
         return visitors
 
     def visitors_by_resources(self):
@@ -93,4 +86,10 @@ class Analyser(object):
 
         resources = {}
 
+        for row in self.__data:
+            if row[1] in resources.keys():
+                if row[2] not in resources.get(row[1], []):
+                    resources[row[1]].append(row[2])
+            else:
+                    resources.setdefault(row[1], []).append(row[2])
         return resources
