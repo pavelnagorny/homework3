@@ -87,9 +87,16 @@ class Analyser(object):
         resources = {}
 
         for row in self.__data:
-            if row[1] in resources.keys():
-                if row[2] not in resources.get(row[1], []):
-                    resources[row[1]].append(row[2])
-            else:
-                    resources.setdefault(row[1], []).append(row[2])
+            if resources.has_key(row[2]):
+                resources[row[2]] += 1
+            resources.setdefault(row[2], 1)
+        """
+            uncomment the code below to get dictionary of resources and countries
+        """
+            # if row[1] in resources.keys():
+            #     if row[2] not in resources.get(row[1], []):
+            #         resources[row[1]].append(row[2])
+            # else:
+            #         resources.setdefault(row[1], []).append(row[2])
+
         return resources
